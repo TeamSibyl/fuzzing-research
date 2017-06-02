@@ -20,3 +20,6 @@ Once again, there are quite a few techniques for this:
 2. For text protocols, a single random character can be removed or inserted at a random position.
 3. If the test cases are generated based on a grammar, a rule may be temporarily modified, and the test cases regenerated, or a random identifier may be swapped with another one.
 4. Many more intelligent fuzzers work through genetic algorithms.
+Here, each test case is represented by a set of genes, organized into a chromosome.
+Each test case is executed, and then based on the results, some are removed, some are mutated, and some are recombined with other testcases.
+This allows us to efficiently explore the solution space without the risk of getting stuck at a local maxima/minima.
