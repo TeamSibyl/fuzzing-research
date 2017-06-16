@@ -1,19 +1,25 @@
 # Research
 
-Brief overview of complete and ongoing research in the field of fuzzing and testing in general.
+Brief overview of complete and ongoing projects and research in the field of fuzzing and testing in general.
 
 ## [Vuzzers: Aplication aware Evolutionary fuzzing](http://www.cs.vu.nl/~giuffrida/papers/vuzzer-ndss-2017.pdf)
 
 This paper covers an application-aware evolutionary fuzzing strategy that does not require proir knowledge of the application format.
 The strategy is implemented on VUzzer, and claims to outperform AFL.
 
-Note: VUzzer  is a greybox fuzzer.
+> Note: VUzzer  is a greybox fuzzer.
 
 ## [ClusterFuzz](https://github.com/google/oss-fuzz/blob/master/docs/clusterfuzz.md)
 
 ClusterFuzz is a distributed cloud fuzzing platform, and was originally designed for fuzzing Chromium at scale.
 
 It is the backbone of OSS-fuzz, a project that seeks to fuzz-test all kinds of open-source projects.
+
+## SPIKE: C based fuzzer creation kit
+
+SPIKE is the grandfather of all fuzzers, and it ther first major effort to abstract fuzzers into a framework.  
+It functions as a fuzzer creation kit, providing an API that allows a user to create their own fuzzers for network based protocols using the C programming language.
+Unfortunately, SPIKE has terible documentation and support, and today has fallen mostly into obscurity.
 
 ## [IFuzzer: An Evolutionary Interpreter Fuzzer using Genetic Programming](http://www.cs.vu.nl/~herbertb/download/papers/ifuzzer-esorics16.pdf)
 
@@ -51,9 +57,3 @@ This paper also provides comparisons between various fuzzers and categorieses th
 Sulley is a Python framework for fuzzing.
 It abstracts a fuzzer into a handful of components, and allows a developer to easily write a new one for any program/attack surface.
 Sulley also has built-in parallel processing capabilities.  
-
-## SPIKE: C based fuzzer creation kit
-
-SPIKE is like the grandfather of all fuzzers, and it ther first major effort to abstract fuzzers into a framework.  
-SPIKE is actually a fuzzer creation kit, providing an API that allows a user to create their own fuzzers for network based protocols using the C programming language.
-Unfortunately, SPIKE has terible documentation and support, and today has fallen mostly into obscurity. 
