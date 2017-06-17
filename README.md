@@ -5,22 +5,36 @@ A brief overview of fuzzing.
 ## What is fuzzing anyway?
 
 > Fuzzing or fuzz testing is an automated software testing technique that involves providing invalid, unexpected, or random data as inputs to a computer program.
-
+> 
 > -Wikipedia
 
 Fuzzing is essentially a brute-force technique that bombards the target program/system with malformed input with the goal of detecting an edge case, memory allocation issue, or other type of bug.
 
+Fuzzing's primary advantage over other security techniques is its inherent randomness(fuzziness), which allow it to detect all sorts of complicated bugs in a fairly intelligent manner.
+
 ## Why fuzz?
 
-In today's software, most bugs are actually pretty simple stuff.
+In today's software, many bugs are actually pretty simple stuff.
 A significant portion of bugs relate to:
 1. Memory handling
 2. Buffer/Stack/List overflows
 3. Improper edge-case handling
 
-However, attack surfaces are also quite complicated, and as new technologies arise, this complexity will increase exponentially. 
+However, attack surfaces are also quite complicated, and as new technologies arise and build upon each other, this complexity will increase exponentially.
 Fuzzing can provide a way to automatically detect these sorts of bugs, significantly cutting down on tester man-hours.
 With the latest wave of more intelligent fuzzers being developed, the process is also fairly economical computationally.
+
+Fuzzing is particularily useful for covering your bases, and removing a significant number of fairly simple (yet exploitable) vulnerabilities, potentially saving you and your organization the embarassment of being callled out for forgetting to check for buffer overflows or injecttion attacks.    
+
+## What about unit tests?
+
+Unit tests are onther crucial technique for ensuring program quality and correctness.
+The issue with unit tests is that they test to ensure a unit is _right_, not in an attempt to figure out what is wrong.
+They are also written with knowledge of the purpose of the code they are supposed to test, and thus any inadverdent assumptions made in the design of that unit creep up into the test itself.
+Fuzzing, on the other hand, operates with little to no information on the actual program.
+Any such info is usually in feedback to a test it performed.
+
+Unit tests and fuzzing are largely orthogonal, and neither justifies not using the other.
 
 ## Trophies
 
@@ -43,9 +57,11 @@ There are quite a few concerns to be aware of when creating test cases:
 1. For many attack surfaces, the solution space is very large(practically infinite in many cases). In these cases, (dumber) brute-force approaches may not perform well.
 2. Many communication protocols are quite stringent, and require exchanges in a certain format(such as key exchanges or handshakes), and they will kick (or ban) a client that refuses to comply. In these cases, the generator needs to follow some rules.
 3. On the other hand, if the test cases conform _too_ stringently to the protocol, they may miss errors caused by the server being unable to correctly handle misbehaving clients.
-4. Many attack targets depend on or are supported by other software. Usually, this software is either resistant to bugs, or is simply not of any interest. This can complicate the process of tailoring test cases to focus on the target software, and in the detection of bugs. For example, most websites run on top of Apache. Even if you can get the website itself to crash(which is frighteningly easy in most cases), Apache itself will not crash. If your program detects errors by listening to the Apache logs, it may miss the failures entirely.
+4. Many attack targets depend on or are supported by other software. Usually, this software is either resistant to bugs, or is simply not of any interest. This can complicate the process of tailoring test cases to focus on the target software, and in the detection of bugs. For example, most websites run on top of Apache. Even if you can get the website itself to crash(which is frighteningly easy in far too many cases), Apache itself is almost impossible to crash. If your program detects errors by listening to the Apache logs, it may miss the failures entirely.
 
 Test-case generators are usually paired with a mutation engine, which allows it to generate new test cases from previous ones.
+
+One common use of this is in corrupting valid inputs.
 
 ### Detector (a.k.a Monitor)
 
