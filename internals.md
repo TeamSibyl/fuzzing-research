@@ -29,15 +29,17 @@ These detectors tend to be fast, simple, and widely applicable, however their ac
 - White box: These detectors use static analysis to better understand the program.
 They can detect potentially troublesome parts of the code and automatically generate test cases meant to test those bits of code.
 These detectors tend to have the highest code coverage, but are (prohibitively) slow and expensive to run.
-- Grey box: These detectors function similar to black-box, but they watch the running program more closely.
-One common technique is to run the program in a debugger.
-This gives the detector access few useful tools such as watches and breakpoints.
+- Grey box: These detectors are somewhat of a hybrid of white-box and black-box detectors.
+They are quite similar to black-box testers, but also
+observes some data from the running program.
+AFL, for example, injects extra code that allows it to monitor branches in the program.
+This allows it to receive enough data to be able to properly adapt to fuzz the program efficiently, while also avoiding the everwhelming performance penalty of white-box detectors.
 
-Detectors also vary based on whether the target is running locally or remotely, and whether or not the target system/program has multiple processes/components.
+Detectors are also classified based on whether the target is running locally or remotely, and whether the target has multiple components running in parallel.
 
 ### Fuzzing engine
 
 The fuzzing engine is the core of the entire fuzzer.
 It controls the entire process, and is primarily responsible for executing testcases and recording the results.
 It decides whether the testcase succeed in finding a bug, based on the feedback from the detector, and then decides what to do with that result.
-Some fuzzers will try to mutate the testcase and then analyze all the testcases that produced the bug to try to discover the pattern. If the fuzzer is distributed, the engine is responsible for coordinating all of the different nodes.
+Some fuzzers will try to mutate the testcase and then analyze all the testcases that produced the bug to try to discover the pattern. If the fuzzer is distributed, the engine coordinates the different nodes.
