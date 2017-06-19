@@ -57,3 +57,27 @@ This paper also provides comparisons between various fuzzers and categorieses th
 Sulley is a Python framework for fuzzing.
 It abstracts a fuzzer into a handful of components, and allows a developer to easily write a new one for any program/attack surface.
 Sulley also has built-in parallel processing capabilities.  
+
+SPIKE: C based fuzzer creation kit
+
+SPIKE is actually a fuzzer creation kit, providing an API that allows a user to create their own fuzzers for network based 
+protocols using the C programming language. SPIKE defines a number of primitives that it makes available to C coders, which
+ allows it to construct fuzzed messages called “SPIKES” that can be sent to a network service to hopefully induce errors.
+
+ 
+ Fuzzing Frameworks:
+ 
+ http://www.blackhat.com/presentations/bh-usa-07/Amini_and_Portnoy/Whitepaper/bh-usa-07-amini_and_portnoy-WP.pdf
+ 
+ Fuzzers List:
+ 
+ https://www.peerlyst.com/posts/resource-open-source-fuzzers-list
+ 
+ Evolutionary Fuzzing System:
+ 
+ https://www.vdalabs.com/tools/EFS.pdf
+ 
+Improving fuzzers:
+
+http://www.cs.utah.edu/~chenyang/papers/thesis_draft.pdf
+http://download.xuebalib.com/xuebalib.com.12213.pdf
